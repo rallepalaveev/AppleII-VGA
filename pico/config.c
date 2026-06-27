@@ -50,17 +50,18 @@ typedef char config_struct_size_check[(sizeof(struct config) <= FLASH_SECTOR_SIZ
 #define IS_STORED_IN_CONFIG(cfg, field) ((offsetof(struct config, field) + sizeof((cfg)->field)) <= (cfg)->size)
 
 
-extern uint8_t __persistent_data_start[];
-static struct config *cfg = (struct config *)__persistent_data_start;
+// extern uint8_t __persistent_data_start[];
+// static struct config *cfg = (struct config *)__persistent_data_start;
 // TODO static uint8_t *character_rom_storage = __persistent_data_start + FLASH_SECTOR_SIZE;
 
 
 void config_load() {
-    if((cfg->magic_word != MAGIC_WORD_VALUE) || (cfg->size > FLASH_SECTOR_SIZE)) {
+//    if((cfg->magic_word != MAGIC_WORD_VALUE) || (cfg->size > FLASH_SECTOR_SIZE)) {
         config_load_defaults();
         return;
-    }
+//    }
 
+#if 0
     soft_scanline_emulation = cfg->scanline_emulation;
     soft_monochrom = cfg->monochrome;
     mono_bg_color = cfg->mono_bg_color;
@@ -77,6 +78,7 @@ void config_load() {
 
     soft_force_alt_textcolor = IS_STORED_IN_CONFIG(cfg, force_alt_textcolor) ? cfg->force_alt_textcolor : false;
     soft_smooth_hires = IS_STORED_IN_CONFIG(cfg, smooth_hires) ? cfg->smooth_hires : false;
+#endif
 }
 
 
@@ -95,6 +97,7 @@ void config_load_defaults() {
 
 
 void config_save() {
+#if 0
     // the write buffer size must be a multiple of FLASH_PAGE_SIZE so round up
     const int new_config_size = (sizeof(struct config) + FLASH_PAGE_SIZE - 1) & -FLASH_PAGE_SIZE;
     struct config *new_config = malloc(new_config_size);
@@ -119,4 +122,5 @@ void config_save() {
     flash_range_program(flash_offset, (uint8_t *)new_config, new_config_size);
 
     free(new_config);
+#endif
 }
