@@ -26,6 +26,42 @@ typedef void (*shadow_handler)(bool is_write, uint_fast16_t address, uint_fast8_
 static int reset_detect_state = 0;
 static shadow_handler softsw_handlers[256];
 
+#if PICO_RP2350
+
+static void abus_main_setup(PIO pio, uint sm) {
+    uint program_offset = pio_add_program(pio, &abus_direct_program);
+    pio_sm_claim(pio, sm);
+
+    pio_sm_config c = abus_program_get_default_config(program_offset);
+
+    // set the bus R/W pin as the jump pin
+    sm_config_set_jmp_pin(&c, CONFIG_PIN_APPLEBUS_RW);
+
+    // map the IN pin group to the data signals
+    sm_config_set_in_pins(&c, CONFIG_PIN_APPLEBUS_DATA_BASE);
+
+    // configure left shift into ISR & autopush every 26 bits
+    sm_config_set_in_shift(&c, false, true, 26);
+
+    pio_sm_init(pio, sm, program_offset, &c);
+
+    pio_gpio_init(pio, CONFIG_PIN_APPLEBUS_PHI0);
+    gpio_set_pulls(CONFIG_PIN_APPLEBUS_PHI0, false, false);
+
+    for(int pin = CONFIG_PIN_APPLEBUS_DATA_BASE; pin < CONFIG_PIN_APPLEBUS_DATA_BASE + 26; pin++) {
+        pio_gpio_init(pio, pin);
+        gpio_set_pulls(pin, false, false);
+    }
+
+    // Disable input synchronization on input pins that are sampled at known stable times
+    // to shave off two clock cycles of input latency
+    pio->input_sync_bypass |= (0x3ffffff << CONFIG_PIN_APPLEBUS_DATA_BASE);
+
+    gpio_init(CONFIG_PIN_APPLEBUS_SYNC);
+    gpio_set_pulls(CONFIG_PIN_APPLEBUS_SYNC, false, false);
+}
+
+#else // PICO_RP2350
 
 static void abus_main_setup(PIO pio, uint sm) {
     uint program_offset = pio_add_program(pio, &abus_program);
@@ -79,6 +115,7 @@ static void abus_main_setup(PIO pio, uint sm) {
     }
 }
 
+#endif // PICO_RP2350
 
 static void shadow_softsw_00(bool is_write, uint_fast16_t address, uint_fast8_t data) {
     if(is_write)
@@ -383,7 +420,9 @@ void abus_loop() {
                 uint_fast8_t device_reg = (value >> 10) & 0xf;
                 device_write(device_reg, value & 0xff);
             }
+#ifdef PICO_DEFAULT_LED_PIN
             gpio_xor_mask(1u << PICO_DEFAULT_LED_PIN);
+#endif
         } else {
             // some other bus cycle - handle memory & soft-switch shadowing
             uint_fast16_t address = (value >> 10) & 0xffff;
