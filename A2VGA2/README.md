@@ -2,7 +2,7 @@ This is a redesign of the Apple II VGA based on the PR2350 chip with 48 GPIOs (o
 
 The A2VGA2 hardware design is released under the MIT License:
 
-    Board design my Ralle Palaveev, Copyright (c) 2026.
+    Board design by Ralle Palaveev, Copyright (c) 2026.
 
     Adaptation for RP2350 by Oliver Schmidt, Copyright (c) 2026.
 
