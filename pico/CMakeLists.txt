@@ -14,10 +14,8 @@ pico_sdk_init()
 
 add_compile_options(-Wall -Wextra -Wnull-dereference -Wno-unused-parameter -Wno-unused-function)
 
-
 add_executable(applevga)
 pico_set_binary_type(applevga copy_to_ram)
-#pico_set_linker_script(applevga ${CMAKE_CURRENT_SOURCE_DIR}/memmap_copy_to_ram_custom.ld)
 
 pico_generate_pio_header(applevga
     ${CMAKE_CURRENT_SOURCE_DIR}/vga.pio)
