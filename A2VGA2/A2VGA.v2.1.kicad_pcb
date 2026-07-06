@@ -10073,6 +10073,15 @@
 		(uuid "36995421-30e6-4b11-a543-c549e150fd7a")
 	)
 	(via
+		(at 144.1704 111.3536)
+		(size 0.6)
+		(drill 0.3)
+		(layers "F.Cu" "B.Cu")
+		(free yes)
+		(net 1)
+		(uuid "370e99d1-fa27-4e01-a7a7-a3a65a8b8650")
+	)
+	(via
 		(at 123.9012 117.475)
 		(size 0.8)
 		(drill 0.4)

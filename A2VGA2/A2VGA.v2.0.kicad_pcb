@@ -11304,6 +11304,15 @@
 		(uuid "30aebf80-b6db-4305-b2c3-c3bca3ab67cb")
 	)
 	(via
+		(at 144.1958 111.2012)
+		(size 0.8)
+		(drill 0.4)
+		(layers "F.Cu" "B.Cu")
+		(free yes)
+		(net 1)
+		(uuid "3cec14d9-c6f3-470b-8130-53d7a7e303de")
+	)
+	(via
 		(at 123.9012 117.475)
 		(size 0.8)
 		(drill 0.4)
