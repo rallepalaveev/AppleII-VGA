@@ -32,10 +32,7 @@ static void abus_main_setup(PIO pio, uint sm) {
     uint program_offset = pio_add_program(pio, &abus_direct_program);
     pio_sm_claim(pio, sm);
 
-    pio_sm_config c = abus_program_get_default_config(program_offset);
-
-    // set the bus R/W pin as the jump pin
-    sm_config_set_jmp_pin(&c, CONFIG_PIN_APPLEBUS_RW);
+    pio_sm_config c = abus_direct_program_get_default_config(program_offset);
 
     // map the IN pin group to the data signals
     sm_config_set_in_pins(&c, CONFIG_PIN_APPLEBUS_DATA_BASE);
@@ -407,6 +404,30 @@ static void shadow_memory(bool is_write, uint_fast16_t address, uint32_t value) 
     }
 }
 
+#if PICO_RP2350
+
+void abus_loop() {
+    while(1) {
+        uint32_t value = pio_sm_get_blocking(CONFIG_ABUS_PIO, ABUS_MAIN_SM);
+
+        const bool is_devsel = ((value & (1u << (CONFIG_PIN_APPLEBUS_DEVSEL - CONFIG_PIN_APPLEBUS_DATA_BASE))) == 0);
+        const bool is_write = ((value & (1u << (CONFIG_PIN_APPLEBUS_RW - CONFIG_PIN_APPLEBUS_DATA_BASE))) == 0);
+        if(is_devsel) {
+            // device slot access
+            if(is_write) {
+                device_write(value & 0xf, (value >> 16) & 0xff);
+            }
+#ifdef PICO_DEFAULT_LED_PIN
+            gpio_xor_mask(1u << PICO_DEFAULT_LED_PIN);
+#endif
+        } else {
+            // some other bus cycle - handle memory & soft-switch shadowing
+            shadow_memory(is_write, value & 0xffff, value >> 16);
+        }
+    }
+}
+
+#else // PICO_RP2350
 
 void abus_loop() {
     while(1) {
@@ -430,3 +451,5 @@ void abus_loop() {
         }
     }
 }
+
+#endif // PICO_RP2350

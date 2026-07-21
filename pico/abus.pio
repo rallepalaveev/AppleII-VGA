@@ -49,30 +49,18 @@ read_cycle:
 .program abus_direct
 ; Prerequisites:
 ;  * Bus clock used is PHI0, wired to GPIO 26
-;  * JMP pin is mapped to the R/W signal
-;  * IN pins are mapped to R/W, ~DEVSEL, Data, and Addr  
+;  * IN pins are mapped to ~DEVSEL, R/W, Data, and Addr  
 ;  * input shift left & autopush @ 26 bits
 ;  * run at about 125MHz (8ns/instruction)
 .wrap_target
-next_bus_cycle:
     wait 1 GPIO, PHI0_GPIO              ; wait for PHI0 to rise.
 
     ; the current time is P0+42ns (P0 + 18ns (clock input delays) + 2 clocks (input synchronizers) + 1 instruction)
 
-    in PINS, 16  [7]                    ; read Addr[15:0]
-    jmp PIN, read_cycle                 ; jump based on the state of the R/W pin
+    nop  [24]                           ; wait until both ~DEVSEL and the written data are valid (P0+200ns)
 
-write_cycle:
-    ; the current time is P0+114ns (P0 + 18ns (clock input delays) + 2 clocks (input synchronizers) + 10 instructions)
+    ; the current time is P0+242ns (P0 + 18ns (clock input delays) + 2 clocks (input synchronizers) + 26 instructions)
 
-    nop  [15]                           ; wait until both ~DEVSEL and the written data are valid (P0+200ns)
-    in PINS, 10                         ; read R/W, ~DEVSEL, and Data[7:0], then autopush
-    wait 0 GPIO, PHI0_GPIO  [7]         ; wait for PHI0 to fall
-    jmp next_bus_cycle
-
-read_cycle:
-    ; the current time is P0+114ns (P0 + 18ns (clock input delays) + 2 clocks (input synchronizers) + 10 instructions)
-
-    in PINS, 10                         ; read R/W, ~DEVSEL, and dontcare[7:0], then autopush
+    in PINS, 26                         ; read ~DEVSEL, R/W, Data[7:0], and Addr[15:0] then autopush
     wait 0 GPIO, PHI0_GPIO  [7]         ; wait for PHI0 to fall
 .wrap
