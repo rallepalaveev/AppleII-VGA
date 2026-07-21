@@ -11032,7 +11032,7 @@
 			)
 		)
 	)
-	(gr_text "A2VGA.v2.0\nBoard design by Ralle Palaveev, (c) 2026\nwww.apple2.co.uk\nFirmware by Oliver Schmidt, (c) 2026\nhttps://a2retro.de/\nBased on work by:\nAppleII-VGA, Mark Aikens (c) 2021-2023\nAnalog Firmware, David Kuder (c) 2022-2023"
+	(gr_text "A2VGA.v2.0\nBoard design by Ralle Palaveev, (c) 2026\nwww.apple2.co.uk\nFirmware by Oliver Schmidt, (c) 2026\nhttps://a2retro.de/\nBased on work by:\nAppleII-VGA, Mark Aikens (c) 2021-2023"
 		(at 148.0312 112.5982 0)
 		(layer "B.SilkS")
 		(uuid "6ec69bf0-bd27-4e31-8522-71d586cb9b08")
