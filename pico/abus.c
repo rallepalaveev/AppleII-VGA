@@ -404,7 +404,6 @@ static void shadow_memory(bool is_write, uint_fast16_t address, uint32_t value) 
     }
 }
 
-#ifdef CPB
 
 void abus_loop() {
     while(1) {
@@ -415,41 +414,16 @@ void abus_loop() {
         if(is_devsel) {
             // device slot access
             if(is_write) {
-                device_write(value & 0xf, (value >> 16) & 0xff);
+                uint_fast8_t device_reg = CONFIG_PIN_APPLEBUS_ADDR(value) & 0xf;
+                device_write(device_reg, CONFIG_PIN_APPLEBUS_DATA(value) & 0xff);
             }
 #ifdef PICO_DEFAULT_LED_PIN
             gpio_xor_mask(1u << PICO_DEFAULT_LED_PIN);
 #endif
         } else {
             // some other bus cycle - handle memory & soft-switch shadowing
-            shadow_memory(is_write, value & 0xffff, value >> 16);
+            uint_fast16_t address = CONFIG_PIN_APPLEBUS_ADDR(value) & 0xffff;
+            shadow_memory(is_write, address, CONFIG_PIN_APPLEBUS_DATA(value));
         }
     }
 }
-
-#else // CPB
-
-void abus_loop() {
-    while(1) {
-        uint32_t value = pio_sm_get_blocking(CONFIG_ABUS_PIO, ABUS_MAIN_SM);
-
-        const bool is_devsel = ((value & (1u << (CONFIG_PIN_APPLEBUS_DEVSEL - CONFIG_PIN_APPLEBUS_DATA_BASE))) == 0);
-        const bool is_write = ((value & (1u << (CONFIG_PIN_APPLEBUS_RW - CONFIG_PIN_APPLEBUS_DATA_BASE))) == 0);
-        if(is_devsel) {
-            // device slot access
-            if(is_write) {
-                uint_fast8_t device_reg = (value >> 10) & 0xf;
-                device_write(device_reg, value & 0xff);
-            }
-#ifdef PICO_DEFAULT_LED_PIN
-            gpio_xor_mask(1u << PICO_DEFAULT_LED_PIN);
-#endif
-        } else {
-            // some other bus cycle - handle memory & soft-switch shadowing
-            uint_fast16_t address = (value >> 10) & 0xffff;
-            shadow_memory(is_write, address, value);
-        }
-    }
-}
-
-#endif // CPB
