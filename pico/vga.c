@@ -157,7 +157,7 @@ void vga_init() {
     spin_lock_init(CONFIG_VGA_SPINLOCK_ID);
 
     // Setup the PIO state machines
-#if PICO_RP2350
+#ifdef CPB
     pio_set_gpio_base(CONFIG_VGA_PIO, 16);
 #endif
     vga_hsync_setup(CONFIG_VGA_PIO, VGA_HSYNC_SM);
