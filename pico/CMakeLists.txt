@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
+set(PICO_BOARD_HEADER_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
+
 # Pull in SDK (must be before project)
 include(cmake/pico_sdk_import.cmake)
 

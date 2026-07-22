@@ -22,7 +22,7 @@ git clone https://github.com/markadev/AppleII-VGA.git ~/AppleII-VGA
 cd ~/AppleII-VGA/pico
 mkdir build
 cd build
-cmake -DAPPLE_MODEL=IIE -DCMAKE_BUILD_TYPE=Release ..
+cmake -DPICO_BOARD=cpb -DAPPLE_MODEL=IIE -DCMAKE_BUILD_TYPE=Release ..
 make
 $ ls *uf2
 ...
@@ -35,7 +35,7 @@ git clone https://github.com/markadev/AppleII-VGA.git ~/AppleII-VGA
 cd ~/AppleII-VGA/pico
 mkdir build
 cd build
-cmake -DAPPLE_MODEL=IIPLUS -DCMAKE_BUILD_TYPE=Release ..
+cmake -DPICO_BOARD=cpb -DAPPLE_MODEL=IIPLUS -DCMAKE_BUILD_TYPE=Release ..
 make
 $ ls *uf2
 ...
