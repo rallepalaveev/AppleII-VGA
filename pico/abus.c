@@ -417,7 +417,7 @@ void abus_loop() {
                 uint_fast8_t device_reg = CONFIG_PIN_APPLEBUS_ADDR(value) & 0xf;
                 device_write(device_reg, CONFIG_PIN_APPLEBUS_DATA(value) & 0xff);
             }
-#ifdef PICO_DEFAULT_LED_PIN
+#ifndef CPB
             gpio_xor_mask(1u << PICO_DEFAULT_LED_PIN);
 #endif
         } else {
