@@ -4,7 +4,7 @@ The A2VGA2 hardware design is released under the MIT License:
 
     Board design by Ralle Palaveev, Copyright (c) 2026.
 
-    Adaptation for RP2350 by Oliver Schmidt, Copyright (c) 2026.
+    Firmware adaptation for RP2350 by Oliver Schmidt, Copyright (c) 2026.
 
 The firmware project would be based on awesome work from the following Apple II VGA project:
 
