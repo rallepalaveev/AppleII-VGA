@@ -10,6 +10,4 @@ The firmware project would be based on awesome work from the following Apple II 
 
     AppleII-VGA. MIT License. Copyright (c) 2021-2022 Mark Aikens.
 
-    Analog Firmware. MIT License. Copyright (c) 2022-2023 David Kuder.
-
     
