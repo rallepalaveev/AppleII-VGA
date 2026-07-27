@@ -26,7 +26,7 @@ typedef void (*shadow_handler)(bool is_write, uint_fast16_t address, uint_fast8_
 static int reset_detect_state = 0;
 static shadow_handler softsw_handlers[256];
 
-#ifdef CPB
+#ifdef CLINTECH_CPB
 
 static void abus_main_setup(PIO pio, uint sm) {
     uint program_offset = pio_add_program(pio, &abus_direct_program);
@@ -58,7 +58,7 @@ static void abus_main_setup(PIO pio, uint sm) {
     gpio_set_pulls(CONFIG_PIN_APPLEBUS_SYNC, false, false);
 }
 
-#else // CPB
+#else // CLINTECH_CPB
 
 static void abus_main_setup(PIO pio, uint sm) {
     uint program_offset = pio_add_program(pio, &abus_program);
@@ -112,7 +112,7 @@ static void abus_main_setup(PIO pio, uint sm) {
     }
 }
 
-#endif // CPB
+#endif // CLINTECH_CPB
 
 static void shadow_softsw_00(bool is_write, uint_fast16_t address, uint_fast8_t data) {
     if(is_write)
@@ -417,7 +417,7 @@ void abus_loop() {
                 uint_fast8_t device_reg = CONFIG_PIN_APPLEBUS_ADDR(value) & 0xf;
                 device_write(device_reg, CONFIG_PIN_APPLEBUS_DATA(value) & 0xff);
             }
-#ifndef CPB
+#ifndef CLINTECH_CPB
             gpio_xor_mask(1u << PICO_DEFAULT_LED_PIN);
 #endif
         } else {

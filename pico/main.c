@@ -18,7 +18,7 @@ int main() {
     // Adjust system clock for better dividing into other clocks
     set_sys_clock_khz(CONFIG_SYSCLOCK * 1000, true);
 
-#ifndef CPB
+#ifndef CLINTECH_CPB
     // Setup the on-board LED for debugging
     gpio_init(PICO_DEFAULT_LED_PIN);
     gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
