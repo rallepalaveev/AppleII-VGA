@@ -9877,6 +9877,19 @@
 			(justify left mirror)
 		)
 	)
+	(gr_text "Keyboard\nthis way"
+		(at 115.697 80.8736 -90)
+		(layer "B.SilkS")
+		(uuid "8cc7b466-2932-4da3-bc25-ad40193eb96f")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
 	(gr_text ""
 		(at 114.6556 69.0372 0)
 		(layer "F.SilkS")
