@@ -5804,6 +5804,18 @@
 		(uuid "4bd718a7-5f5b-4fb1-a7f4-7a900f3ea4d6")
 	)
 	(junction
+		(at 129.54 64.77)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "519d9707-26a6-4175-8582-e049b8ef7587")
+	)
+	(junction
+		(at 134.62 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "51d6623d-1107-4978-a707-ff9d88401752")
+	)
+	(junction
 		(at 238.125 116.84)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5862,10 +5874,6 @@
 	(no_connect
 		(at 86.36 54.61)
 		(uuid "16241a02-540c-45ac-9995-1b2e86042a54")
-	)
-	(no_connect
-		(at 120.65 69.85)
-		(uuid "1efc94df-51a7-4658-95b5-ddcd0595ba46")
 	)
 	(no_connect
 		(at 102.87 154.94)
@@ -6071,7 +6079,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 87.63) (xy 120.65 87.63)
+			(xy 139.7 87.63) (xy 134.62 87.63)
 		)
 		(stroke
 			(width 0)
@@ -6198,6 +6206,16 @@
 			(type default)
 		)
 		(uuid "16fe9d28-f3bf-4351-b5eb-a8a5e3002a5b")
+	)
+	(wire
+		(pts
+			(xy 120.65 69.85) (xy 129.54 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "18822744-a814-48c6-9021-6b2874873321")
 	)
 	(wire
 		(pts
@@ -6951,6 +6969,16 @@
 	)
 	(wire
 		(pts
+			(xy 134.62 87.63) (xy 120.65 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9492395-a26b-4394-8974-e116620e793e")
+	)
+	(wire
+		(pts
 			(xy 85.09 102.87) (xy 86.36 102.87)
 		)
 		(stroke
@@ -7528,6 +7556,16 @@
 			(type default)
 		)
 		(uuid "f6845ae7-871d-442d-bebd-681a5cc4cdfb")
+	)
+	(wire
+		(pts
+			(xy 129.54 69.85) (xy 129.54 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faf6abb5-c7df-43bb-9e99-ce5ad46a5626")
 	)
 	(wire
 		(pts
@@ -9580,7 +9618,7 @@
 	)
 	(global_label "RUN"
 		(shape input)
-		(at 121.92 87.63 0)
+		(at 139.7 87.63 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9590,7 +9628,7 @@
 		)
 		(uuid "dac1da61-e324-411b-abe8-5dc5fd800457")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 128.8362 87.63 0)
+			(at 146.6162 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10333,6 +10371,71 @@
 			(project "A2VGA.v2.0"
 				(path "/4c6c2bca-2dd1-4d7b-a3c3-50b1d850646e"
 					(reference "#PWR013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 134.62 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3966afbb-5383-47de-b00f-876ec26d10a6")
+		(property "Reference" "#PWR01"
+			(at 134.62 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 134.62 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 134.62 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 134.62 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 134.62 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ea627923-c3a7-4e16-8d2d-d93eac7f23c0")
+		)
+		(instances
+			(project "A2VGA.v2.0"
+				(path "/4c6c2bca-2dd1-4d7b-a3c3-50b1d850646e"
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -12221,6 +12324,84 @@
 			(project "A2VGA.v2.0"
 				(path "/4c6c2bca-2dd1-4d7b-a3c3-50b1d850646e"
 					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 134.62 91.44 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "dadd0adb-7624-40e4-be96-13ae1f5046c8")
+		(property "Reference" "C2"
+			(at 137.541 90.2716 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 137.541 92.583 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 135.5852 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 134.62 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 134.62 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MouserNo" "594-A104K15X7RF5TAA"
+			(at 134.62 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d0c11a4f-21f9-4cd3-8ad2-35bffd461aba")
+		)
+		(pin "2"
+			(uuid "4c3c5612-5085-41e2-b891-82864bc8a9c8")
+		)
+		(instances
+			(project "A2VGA.v2.0"
+				(path "/4c6c2bca-2dd1-4d7b-a3c3-50b1d850646e"
+					(reference "C2")
 					(unit 1)
 				)
 			)
