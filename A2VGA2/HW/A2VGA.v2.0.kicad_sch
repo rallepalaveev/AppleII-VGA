@@ -5868,10 +5868,6 @@
 		(uuid "0033ccb2-c8a8-4515-81df-0ac54bff039f")
 	)
 	(no_connect
-		(at 120.65 72.39)
-		(uuid "04bb3d85-78fb-4884-80af-527027c2dd1b")
-	)
-	(no_connect
 		(at 86.36 54.61)
 		(uuid "16241a02-540c-45ac-9995-1b2e86042a54")
 	)
@@ -6339,6 +6335,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 72.39) (xy 134.62 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b2c3790-b617-492c-982c-c295e824119a")
+	)
+	(wire
+		(pts
 			(xy 58.42 88.9) (xy 55.88 88.9)
 		)
 		(stroke
@@ -6656,6 +6662,16 @@
 			(type default)
 		)
 		(uuid "60ff112a-888f-46b3-93bd-ebb9d1dfa46a")
+	)
+	(wire
+		(pts
+			(xy 134.62 72.39) (xy 134.62 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67969425-35a7-48ea-9fcb-a304a47792c0")
 	)
 	(wire
 		(pts
@@ -11099,6 +11115,84 @@
 			(project "A2VGA.v2.0"
 				(path "/4c6c2bca-2dd1-4d7b-a3c3-50b1d850646e"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 134.62 83.82 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "862f7955-ac2e-4edf-af2c-b83bab1359cd")
+		(property "Reference" "R12"
+			(at 140.208 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1K"
+			(at 138.938 84.836 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "AppleVGA:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Thin_Horizontal"
+			(at 133.604 83.566 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 134.62 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 134.62 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MouserNo" "603-MFR-25FBF52-1K"
+			(at 134.62 83.82 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "449d96eb-0c9e-4481-8d73-2dcfb48b77ec")
+		)
+		(pin "2"
+			(uuid "0891b8c7-5b67-4b46-96c5-93130e5e10e4")
+		)
+		(instances
+			(project "A2VGA.v2.0"
+				(path "/4c6c2bca-2dd1-4d7b-a3c3-50b1d850646e"
+					(reference "R12")
 					(unit 1)
 				)
 			)
