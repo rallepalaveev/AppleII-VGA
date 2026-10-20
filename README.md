@@ -26,6 +26,7 @@ These features are currently supported:
  * Soft-monochrome mode to force display as if on a monochrome monitor
  * Some Video-7 RGB card extended graphical modes are implemented
  * Compatibility with Videx VideoTerm modes on Apple II+ (thanks to @abaffa)
+ * ProDOS [config-disk](config-disk/A2VGA_config.po?raw=true)
 
 I had these goals in mind during design:
  * Generate video out to a more modern display - I don't have any old CRTs for
