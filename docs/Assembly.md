@@ -115,7 +115,7 @@ If you're building a connector board too then just solder it up, ensuring the ID
 To install firmware on the Pico you'll need a USB to micro-USB cable.
 
 1. Download a firmware file for your Apple model (II+ or IIe)
-   [from the release page](https://github.com/markadev/AppleII-VGA/releases)
+   [from the release page](/../../releases)
 2. Hold the Pico's button down while connecting the Pico's USB to a PC
 3. Your OS will detect a virtual USB-attached disk
 4. Drag and drop the (`.uf2`) firmware file onto the virtual USB drive 
