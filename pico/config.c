@@ -52,7 +52,7 @@ typedef char config_struct_size_check[(sizeof(struct config) <= FLASH_SECTOR_SIZ
 #define IS_STORED_IN_CONFIG(cfg, field) ((offsetof(struct config, field) + sizeof((cfg)->field)) <= (cfg)->size)
 
 
-static struct config *cfg = (struct config *)XIP_BASE + PICO_FLASH_SIZE_BYTES - FLASH_SECTOR_SIZE;
+static struct config *cfg = (struct config *)(XIP_BASE + PICO_FLASH_SIZE_BYTES - FLASH_SECTOR_SIZE);
 
 
 void config_load() {
@@ -95,8 +95,8 @@ void config_load_defaults() {
 
 
 void config_save() {
-    // the write buffer size must be a multiple of FLASH_PAGE_SIZE so round up
-    const int new_config_size = (sizeof(struct config) + FLASH_PAGE_SIZE - 1) & -FLASH_PAGE_SIZE;
+    // the write buffer size must be a multiple of FLASH_SECTOR_SIZE so round up
+    const int new_config_size = (sizeof(struct config) + FLASH_SECTOR_SIZE - 1) & -FLASH_SECTOR_SIZE;
     struct config *new_config = malloc(new_config_size);
     memset(new_config, 0xff, new_config_size);
     memset(new_config, 0, sizeof(struct config));
